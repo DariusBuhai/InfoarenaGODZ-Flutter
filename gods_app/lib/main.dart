@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'side_drawer.dart';
+import 'company_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,8 +26,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Center(child: Text('cartor')),
-      drawer: SideDrawer(),
+      body: CompanyList(),
     );
   }
 }
