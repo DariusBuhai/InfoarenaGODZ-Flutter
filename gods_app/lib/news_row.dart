@@ -10,7 +10,7 @@ class NewsRow extends StatefulWidget {
 
 class _NewsRowState extends State < NewsRow > {
 
-  List restaurants = [
+  List news = [
     {
       "title": "Happy Jones",
       "address": "1278 Loving Acres RoadKansas City, MO 64110",
@@ -27,13 +27,12 @@ class _NewsRowState extends State < NewsRow > {
         primary: false,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: restaurants == null ? 0 :restaurants.length,
+        itemCount: news == null ? 0 :news.length,
         itemBuilder: (BuildContext context, int index) {
-          Map newsPiece = restaurants[index];
+          Map newsPiece = news[index];
           return Padding(
             padding: EdgeInsets.only(right: 10.0),
             child: SlideItem(
-              img: " ",
               title: newsPiece["title"],
               address: newsPiece["address"],
               rating: newsPiece["rating"],

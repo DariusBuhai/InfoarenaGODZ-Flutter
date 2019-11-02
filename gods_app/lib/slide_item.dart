@@ -3,14 +3,12 @@ import 'const.dart';
 
 class SlideItem extends StatefulWidget {
 
-  final String img;
   final String title;
   final String address;
   final String rating;
 
   SlideItem({
     Key key,
-    @required this.img,
     @required this.title,
     @required this.address,
     @required this.rating,
@@ -43,10 +41,6 @@ class _SlideItemState extends State<SlideItem> {
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
-                      ),
-                      child: Image.asset(
-                        "${widget.img}",
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -96,8 +90,6 @@ class _SlideItemState extends State<SlideItem> {
                       ),
                     ),
                   ),
-
-
                 ],
               ),
 
