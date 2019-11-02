@@ -5,7 +5,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-  final appTitle = 'God\'s App';
+  final appTitle = 'FTSE 100 - analytics';
 
   @override
   Widget build(BuildContext context) {
