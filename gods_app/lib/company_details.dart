@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'stock_chart_test.dart';
 import 'stock_chart.dart';
+
 
 class CompanyDetails extends StatefulWidget {
 
@@ -22,8 +22,9 @@ class _CompanyDetailsState extends State < CompanyDetails > {
       ),
       body: Column(
         children: < Widget > [
-          LineChartSample2(),
-          StockChart(widget._companyName),
+          Container(
+            child: StockChart(),
+          ),
         ],
       ),
     );
