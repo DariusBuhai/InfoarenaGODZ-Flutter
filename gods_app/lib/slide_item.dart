@@ -117,9 +117,7 @@ class _SlideItemState extends State<SlideItem> {
                   ),
                 ),
               ),
-
               SizedBox(height: 7.0),
-
               Padding(
                 padding: EdgeInsets.only(left: 15.0),
                 child: Container(
