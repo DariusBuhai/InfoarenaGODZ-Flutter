@@ -11,7 +11,9 @@ class StockData {
 }
 
 class StockChart extends StatefulWidget {
-  StockChart({Key key}): super(key: key);
+  StockChart(String this._code, {Key key}): super(key: key);
+
+  final String _code;
 
   @override
   _StockChartState createState() => _StockChartState();
@@ -50,8 +52,7 @@ class _StockChartState extends State < StockChart > {
   }
 
   Future < List < StockData > > fetchChartDataX() async {
-    // TODO modifica nume companie ca lumea
-    final response = await http.get(BASE_IP + "/stocks/VOD");
+    final response = await http.get(BASE_IP + "/stocks/" + widget._code);
     final decodedResponse = json.decode(response.body);
 
     var xPoints = List < double >.from(decodedResponse["dates"]);

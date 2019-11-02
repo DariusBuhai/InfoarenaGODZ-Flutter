@@ -15,7 +15,8 @@ class CompanyList extends StatefulWidget {
 
 class _CompanyListState extends State < CompanyList > {
 
-  List < String > _companyList = [];
+  List < String > _companyNameList = [];
+  List < String > _companyCodeList = [];
 
   @override 
   initState() {
@@ -27,10 +28,12 @@ class _CompanyListState extends State < CompanyList > {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        itemCount: _companyList.length,
+        itemCount: _companyNameList.length,
         itemBuilder: (BuildContext context, int index) {
 
-          String currentName = _companyList[index];
+          String currentName = _companyNameList[index];
+          String currentCode = _companyCodeList[index];
+
           return Container(
             margin: EdgeInsets.all(5),
             child: Card(
@@ -41,7 +44,7 @@ class _CompanyListState extends State < CompanyList > {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return CompanyDetails(currentName);
+                        return CompanyDetails(currentName, currentCode);
                       }
                     ),
                   );
@@ -57,20 +60,27 @@ class _CompanyListState extends State < CompanyList > {
   }
 
   void _updateCompanyList() {
-    fetchCompanyNames().then((companyNames) {
+
+    fetchCompanyData("name").then((data) {
       setState(() {
-        _companyList = companyNames; 
+        _companyNameList = data; 
+      });
+    });
+
+    fetchCompanyData("code").then((data) {
+      setState(() {
+        _companyCodeList = data; 
       });
     });
   }
 
-  Future < List < String > > fetchCompanyNames() async {
+  Future < List < String > > fetchCompanyData(String what) async {
     final response = await http.get(BASE_IP + "/companies/");
     final decodedResponse = json.decode(response.body);
 
     List < String > ret = [];
     for (var x in decodedResponse) {
-      ret.add(x["name"]);
+      ret.add(x[what]);
     }
 
     return ret;

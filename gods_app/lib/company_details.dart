@@ -4,9 +4,9 @@ import 'stock_chart.dart';
 
 class CompanyDetails extends StatefulWidget {
 
-  CompanyDetails(this._companyName, {Key key}): super(key: key);
+  CompanyDetails(this._companyName, this._companyCode, {Key key}): super(key: key);
 
-  final String _companyName;
+  final String _companyName, _companyCode;
 
   @override
   _CompanyDetailsState createState() => _CompanyDetailsState();
@@ -23,7 +23,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
       body: Column(
         children: < Widget > [
           Container(
-            child: StockChart(),
+            child: StockChart(widget._companyCode),
           ),
         ],
       ),
