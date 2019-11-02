@@ -3,7 +3,6 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'constants.dart';
-import 'dart:math';
 
 class StockData {
   StockData(this.date, this.price);
@@ -56,15 +55,12 @@ class _StockChartState extends State < StockChart > {
     final response = await http.get(BASE_IP + "/stocks/" + widget._code);
     final decodedResponse = json.decode(response.body);
 
-    var xPoints = List < double >.from(decodedResponse["dates"]);
+    var xPoints = List < int >.from(decodedResponse["dates"]);
     var yPoints = List < double >.from(decodedResponse["prices"]);
-
-    final double minVal = xPoints.reduce(min);
-    print(minVal);
 
     List < StockData > ret = [];
     for (int i = 0; i < xPoints.length; ++ i) {
-      ret.add(StockData(xPoints[i].toString() + " Oct. pupeak", yPoints[i]));
+      ret.add(StockData(xPoints[i].toString() + " Oct.", yPoints[i]));
     }
 
     return ret;
