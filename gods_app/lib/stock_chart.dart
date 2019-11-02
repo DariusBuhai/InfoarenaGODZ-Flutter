@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'constants.dart';
 
 class StockData {
   StockData(this.date, this.price);
@@ -50,7 +51,7 @@ class _StockChartState extends State < StockChart > {
 
   Future < List < StockData > > fetchChartDataX() async {
     // TODO modifica nume companie ca lumea
-    final response = await http.get("http://172.16.27.221:8000/stocks/VOD");
+    final response = await http.get(BASE_IP + "/stocks/VOD");
     final decodedResponse = json.decode(response.body);
 
     var xPoints = List < double >.from(decodedResponse["dates"]);

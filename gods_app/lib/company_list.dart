@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+import 'constants.dart';
 
 import 'company_details.dart';
 
@@ -64,7 +65,7 @@ class _CompanyListState extends State < CompanyList > {
   }
 
   Future < List < String > > fetchCompanyNames() async {
-    final response = await http.get("http://172.16.27.221:8000/companies/");
+    final response = await http.get(BASE_IP + "/companies/");
     final decodedResponse = json.decode(response.body);
 
     List < String > ret = [];
