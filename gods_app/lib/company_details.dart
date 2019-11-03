@@ -25,18 +25,43 @@ class _CompanyDetailsState extends State < CompanyDetails > {
         children: < Widget > [
           Column(
             children: < Widget > [
-              Text(
-                "\nStock Prices",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
-                ),
+              SizedBox(height: 20.0),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "     Stock Prices",
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
               ),
+
+              SizedBox(height: 10.0),
               Container(
                 child: StockChart(widget._companyCode),
               ),
             ],
           ),
+          SizedBox(height: 20.0),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "     Relevant news",
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+
+          SizedBox(height: 10.0),
           NewsRow(),
         ],
       ),
