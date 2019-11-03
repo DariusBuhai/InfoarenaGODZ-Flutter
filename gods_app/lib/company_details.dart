@@ -20,6 +20,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget._companyName),
+        backgroundColor: Colors.black87,
       ),
       body: ListView(
         children: < Widget > [
@@ -33,7 +34,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
                   Text(
                     "     Stock Prices",
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 30,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
@@ -54,7 +55,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               Text(
                 "     Relevant news",
                 style: TextStyle(
-                  fontSize: 40,
+                  fontSize: 30,
                   fontWeight: FontWeight.w800,
                 ),
               ),

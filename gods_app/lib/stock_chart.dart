@@ -38,6 +38,7 @@ class _StockChartState extends State < StockChart > {
           dataSource: _data,
           xValueMapper: (StockData stock, _) => stock.date,
           yValueMapper: (StockData stock, _) => stock.price,
+          dataLabelSettings: DataLabelSettings(isVisible: true)
         )
       ],
     );
