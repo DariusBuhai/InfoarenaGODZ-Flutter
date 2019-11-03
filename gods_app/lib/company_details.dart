@@ -49,6 +49,31 @@ class _CompanyDetailsState extends State < CompanyDetails > {
           ),
           SizedBox(height: 20.0),
 
+          Column(
+            children: < Widget > [
+              SizedBox(height: 20.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "     Stock Influence",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 10.0),
+              Container(
+                child: FinalChart(widget._companyName, widget._companyCode),
+              ),
+            ],
+          ),
+
+          SizedBox(height: 20.0),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -64,31 +89,21 @@ class _CompanyDetailsState extends State < CompanyDetails > {
 
           SizedBox(height: 10.0),
           NewsRow(widget._companyName),
-          TweetRow(widget._companyCode),
-          SizedBox(height: 20.0),
 
-          Column(
-            children: < Widget > [
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "     Stock Prices",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 10.0),
-              Container(
-                child: FinalChart(widget._companyName, widget._companyCode),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "     Relevant Tweets",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
             ],
           ),
+
+          TweetRow(widget._companyCode),
         ],
       ),
     );

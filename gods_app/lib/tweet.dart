@@ -22,7 +22,7 @@ class _TweetState extends State<Tweet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(15.0),
+      padding: EdgeInsets.all(10.0),
       child: Container(
         height: MediaQuery.of(context).size.height / 5.0,
         width: MediaQuery.of(context).size.width / 1.2,
