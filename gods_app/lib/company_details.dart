@@ -36,7 +36,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
                   Text(
                     "     Stock Prices",
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 27,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
@@ -59,7 +59,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
                   Text(
                     "     Stock Influence",
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 27,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
@@ -79,7 +79,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               Text(
                 "     Relevant Tweets",
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 27,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -93,7 +93,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               Text(
                 "     Relevant news",
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 27,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -105,9 +105,9 @@ class _CompanyDetailsState extends State < CompanyDetails > {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "     Predict Twitter headline impact",
+                "     Tweet impact prediction",
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 27,
                   fontWeight: FontWeight.w800,
                 ),
               ),

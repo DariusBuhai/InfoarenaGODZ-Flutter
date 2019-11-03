@@ -16,8 +16,7 @@ class Tweet extends StatefulWidget {
     @required this.rating,
     @required this.stoc_price,
     @required this.likes,
-  })
-      : super(key: key);
+  }): super(key: key);
 
   @override
   _TweetState createState() => _TweetState();
