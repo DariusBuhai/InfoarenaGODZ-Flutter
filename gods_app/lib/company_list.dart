@@ -11,7 +11,7 @@ class Company {
   final String _code;
   final String _avgStock;
   final String _lastStock;
-}
+} // holds details about about one company
 
 class CompanyList extends StatefulWidget {
   CompanyList({Key key}): super(key: key);
@@ -28,6 +28,7 @@ class _CompanyListState extends State < CompanyList > {
   initState() {
     super.initState();
     Timer.periodic(Duration(seconds: 3), (Timer t) => _updateCompanyList());
+    // init and refresh company list every 3 seconds
   }
 
   @override 
@@ -43,8 +44,9 @@ class _CompanyListState extends State < CompanyList > {
 
           int divIndex = (index / 2).floor();
           var currentComp = _companies[divIndex];
-          double progress = double.parse(_companies[divIndex]._lastStock) - 
+          double priceEvolution = double.parse(_companies[divIndex]._lastStock) - 
               double.parse(_companies[divIndex]._avgStock);
+          // difference between average price and last price of stock
 
           return ListTile(
             title: Container(
@@ -55,8 +57,9 @@ class _CompanyListState extends State < CompanyList > {
                   Row(
                     children: < Widget > [
                       Icon(
-                        (progress >= 0 ? Icons.arrow_upward : Icons.arrow_downward),
-                        color: (progress >= 0 ? Colors.green : Colors.red),
+                        (priceEvolution >= 0 ? Icons.arrow_upward : Icons.arrow_downward),
+                        color: (priceEvolution >= 0 ? Colors.green : Colors.red),
+                        // negative means downtrend, positive means uptrend
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -67,7 +70,7 @@ class _CompanyListState extends State < CompanyList > {
                             fontSize: 18.0,
                           ),
                         ),
-                      ),
+                      ), // displacy company name
                     ],
                   ),
                   Container(
@@ -79,7 +82,7 @@ class _CompanyListState extends State < CompanyList > {
                         fontSize: 18.0,
                       ),
                     ),
-                  ),
+                  ), // display last price of stock
                 ],
               ),
             ),
@@ -91,7 +94,7 @@ class _CompanyListState extends State < CompanyList > {
                     return CompanyDetails(currentComp._name, currentComp._code);
                   }
                 ),
-              );
+              ); // when tapped just to new windows to see more details
             },
           );
         }
@@ -104,6 +107,7 @@ class _CompanyListState extends State < CompanyList > {
     fetchCompanyData().then((companies) {
       setState(() {
         _companies = companies; 
+        // update company list
       });
     });
   }
@@ -122,6 +126,7 @@ class _CompanyListState extends State < CompanyList > {
       ));
     }
 
+    // fetch and parse company data from database
     return ret;
   }
 }

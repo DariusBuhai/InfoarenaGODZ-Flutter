@@ -5,11 +5,11 @@ import 'dart:convert';
 import 'constants.dart';
 
 class TweetData {
-  TweetData(this.content, this.shares, this.rating, this.likes, this.stoc_price);
+  TweetData(this.content, this.shares, this.rating, this.likes, this.stocPrice);
   final String content;
   final String shares;
   final String rating;
-  final String stoc_price;
+  final String stocPrice;
   final String likes;
 }
 
@@ -50,7 +50,7 @@ class _TweetRowState extends State < TweetRow > {
               content: newsPiece.content,
               shares: newsPiece.shares,
               rating: newsPiece.rating,
-              stoc_price: newsPiece.stoc_price,
+              stocPrice: newsPiece.stocPrice,
               likes: newsPiece.likes,
             ),
           );

@@ -5,24 +5,17 @@ import 'tweet_row.dart';
 import 'final_chart.dart';
 import 'headline_prediction.dart';
 
-class CompanyDetails extends StatefulWidget {
+class CompanyDetails extends StatelessWidget {
 
   CompanyDetails(this._companyName, this._companyCode, {Key key}): super(key: key);
 
   final String _companyName, _companyCode;
 
   @override
-  _CompanyDetailsState createState() => _CompanyDetailsState();
-}
-
-class _CompanyDetailsState extends State < CompanyDetails > {
-
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._companyName),
+        title: Text(_companyName),
         backgroundColor: Colors.black87,
       ),
       body: ListView(
@@ -45,7 +38,8 @@ class _CompanyDetailsState extends State < CompanyDetails > {
 
               SizedBox(height: 10.0),
               Container(
-                child: StockChart(widget._companyCode),
+                child: StockChart(_companyCode),
+                // graph with time x price of stock
               ),
             ],
           ),
@@ -68,7 +62,8 @@ class _CompanyDetailsState extends State < CompanyDetails > {
 
               SizedBox(height: 10.0),
               Container(
-                child: FinalChart(widget._companyName, widget._companyCode),
+                child: FinalChart(_companyName, _companyCode),
+                // graph with news influence x price of stock
               ),
             ],
           ),
@@ -85,8 +80,10 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               ),
             ],
           ),
-          TweetRow(widget._companyCode),
+
+          TweetRow(_companyCode), // show analyzed tweets
           SizedBox(height: 10.0),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -99,8 +96,10 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               ),
             ],
           ),
-          NewsRow(widget._companyName),
+
+          NewsRow(_companyName), // show analyzed news
           SizedBox(height: 10.0),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -113,7 +112,9 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               ),
             ],
           ),
-          HeadlinePrediction(widget._companyName, widget._companyCode),
+          HeadlinePrediction(_companyName, _companyCode), 
+          // show prediction box where you can input a fake tweet and see how
+          // it would affect the stock market
         ],
       ),
     );

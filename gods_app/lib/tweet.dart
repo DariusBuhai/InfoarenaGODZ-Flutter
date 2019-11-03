@@ -5,7 +5,7 @@ class Tweet extends StatefulWidget {
   final String content;
   final String shares;
   final String rating;
-  final String stoc_price;
+  final String stocPrice;
   final String likes;
 
 
@@ -14,7 +14,7 @@ class Tweet extends StatefulWidget {
     @required this.content,
     @required this.shares,
     @required this.rating,
-    @required this.stoc_price,
+    @required this.stocPrice,
     @required this.likes,
   }): super(key: key);
 
@@ -80,7 +80,7 @@ class _TweetState extends State<Tweet> {
                         child: Row(
                           children: <Widget>[
                             Text(
-                              "\$${widget.stoc_price} ",
+                              "\$${widget.stocPrice} ",
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.green,

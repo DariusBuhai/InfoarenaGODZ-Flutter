@@ -9,7 +9,7 @@ class FinalData {
   FinalData(this.rating, this.price);
   final String rating;
   final double price;
-}
+} // chart point data
 
 class FinalChart extends StatefulWidget {
   FinalChart(String name, String code, {Key key}): _name = name, _code = code, super(key: key);
@@ -29,6 +29,7 @@ class _FinalChartState extends State < FinalChart > {
   initState() {
     super.initState();
     updateChartData();
+    // init the influence x price chart
   }
 
   @override
@@ -37,7 +38,6 @@ class _FinalChartState extends State < FinalChart > {
       return SfCartesianChart(
         primaryXAxis: CategoryAxis(),
         title: ChartTitle(text: 'Influence of tweets and news'),
-        // Enable tooltip
         tooltipBehavior: TooltipBehavior(enable: true),
         primaryYAxis: NumericAxis(
           numberFormat: NumberFormat.simpleCurrency()
@@ -52,8 +52,8 @@ class _FinalChartState extends State < FinalChart > {
           )
         ],
       );
-    }
-    return Container();
+    } // display chart if there is data available
+    return Container(); // display nothing otherwise
   }
 
   void updateChartData() {
@@ -64,7 +64,7 @@ class _FinalChartState extends State < FinalChart > {
         });
       });
     }
-  }
+  } // update chard data
 
   Future < List < FinalData > > fetchChartDataX() async {
     final response = await http.get(BASE_IP_FINAL_DATA + widget._name + "/" + widget._code);
@@ -79,5 +79,5 @@ class _FinalChartState extends State < FinalChart > {
     }
 
     return ret;
-  }
+  } // request and parse data for chart
 }

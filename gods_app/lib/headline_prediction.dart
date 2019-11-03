@@ -4,7 +4,8 @@ import 'dart:convert';
 import 'constants.dart';
 
 class HeadlinePrediction extends StatefulWidget {
-  HeadlinePrediction(String name, String code, {Key key}): _name = name, _code = code, super(key: key);
+  HeadlinePrediction(String name, String code, {Key key}):
+    _name = name, _code = code, super(key: key);
 
   final String _name, _code;
 
@@ -18,7 +19,7 @@ class _HeadlinePredictionState extends State < HeadlinePrediction > {
   String _likes = "0";
   String _shares = "0";
   String _prediction = "0";
-
+  // prediction parameters
 
   @override
   Widget build(BuildContext context) {

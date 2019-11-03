@@ -11,8 +11,7 @@ class NewsItem extends StatefulWidget {
     @required this.title,
     @required this.content,
     @required this.rating,
-  })
-      : super(key: key);
+  }): super(key: key);
 
   @override
   _NewsItemState createState() => _NewsItemState();

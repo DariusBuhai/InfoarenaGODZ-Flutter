@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'company_list.dart';
 
+// main class of the app
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,8 +27,12 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title), backgroundColor: Colors.black87),
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: Colors.black87
+      ), // appBar with app title 
       body: CompanyList(),
+      // list of companies we anlized
     );
   }
 }
