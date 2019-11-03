@@ -3,6 +3,7 @@ import 'stock_chart.dart';
 import 'news_row.dart';
 import 'tweet_row.dart';
 import 'final_chart.dart';
+import 'headline_prediction.dart';
 
 class CompanyDetails extends StatefulWidget {
 
@@ -48,7 +49,6 @@ class _CompanyDetailsState extends State < CompanyDetails > {
             ],
           ),
           SizedBox(height: 20.0),
-
           Column(
             children: < Widget > [
               SizedBox(height: 20.0),
@@ -71,9 +71,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               ),
             ],
           ),
-
           SizedBox(height: 20.0),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -86,10 +84,8 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               ),
             ],
           ),
-
           SizedBox(height: 10.0),
           NewsRow(widget._companyName),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -102,8 +98,9 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               ),
             ],
           ),
-
           TweetRow(widget._companyCode),
+          SizedBox(height: 10.0),
+          HeadlinePrediction(widget._companyName, widget._companyCode),
         ],
       ),
     );
