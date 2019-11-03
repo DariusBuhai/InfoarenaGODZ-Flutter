@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gods_app/const.dart';
 import 'company_list.dart';
 
 void main() => runApp(MyApp());
@@ -12,15 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: appTitle,
-      //theme: Constants.lightTheme,
       home: MyHomePage(title: appTitle),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-
-  bool isDark = false;
 
   final String title;
 

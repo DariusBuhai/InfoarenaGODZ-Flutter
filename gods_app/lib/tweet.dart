@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-class NewsItem extends StatefulWidget {
+class Tweet extends StatefulWidget {
 
-  final String title;
   final String content;
+  final String shares;
   final String rating;
 
-  NewsItem({
+  Tweet({
     Key key,
-    @required this.title,
     @required this.content,
+    @required this.shares,
     @required this.rating,
   })
       : super(key: key);
 
   @override
-  _NewsItemState createState() => _NewsItemState();
+  _TweetState createState() => _TweetState();
 }
 
-class _NewsItemState extends State<NewsItem> {
+class _TweetState extends State<Tweet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -65,29 +65,35 @@ class _NewsItemState extends State<NewsItem> {
                       ),
                     ),
                   ),
+
+                  Positioned(
+                    top: 6.0,
+                    left: 6.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(4.0)),
+                      child: Padding(
+                        padding: EdgeInsets.all(2.0),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.share,
+                              size: 15.0,
+                            ),
+                            Text(
+                              " ${widget.shares} ",
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
 
               SizedBox(height: 10.0),
-
-              SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 15.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      "${widget.title}",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 7.0),
 
               Padding(
                 padding: EdgeInsets.only(left: 15.0),
@@ -102,6 +108,8 @@ class _NewsItemState extends State<NewsItem> {
                   ),
                 ),
               ),
+
+              SizedBox(height: 15.0),
             ],
           ),
         ),

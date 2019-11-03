@@ -1,52 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'news_item.dart';
+import 'tweet.dart';
 import 'dart:convert';
 import 'constants.dart';
 
-class NewsData {
-  NewsData(this.title, this.content, this.rating);
-  final String title;
+class TweetData {
+  TweetData(this.content, this.shares, this.rating);
   final String content;
+  final String shares;
   final String rating;
 }
 
-class NewsRow extends StatefulWidget {
-  NewsRow(String code, {Key key}): _code = code, super(key: key);
+class TweetRow extends StatefulWidget {
+  TweetRow(String code, {Key key}): _code = code, super(key: key);
 
   final String _code;
 
   @override
-  _NewsRowState createState() => _NewsRowState();
+  _TweetRowState createState() => _TweetRowState();
 }
 
-class _NewsRowState extends State < NewsRow > {
+class _TweetRowState extends State < TweetRow > {
 
-  List < NewsData > _news = [];
+  List < TweetData > _tweets = [];
 
   @override
   initState() {
     super.initState();
-    updateNewsData();
+    updateTweetData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height/3.5,
+      height: MediaQuery.of(context).size.height / 3.5,
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
         primary: false,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: _news == null ? 0 :_news.length,
+        itemCount: _tweets == null ? 0 :_tweets.length,
         itemBuilder: (BuildContext context, int index) {
-          NewsData newsPiece = _news[index];
+          TweetData newsPiece = _tweets[index];
           return Padding(
             padding: EdgeInsets.only(right: 10.0),
-            child: NewsItem(
-              title: newsPiece.title,
+            child: Tweet(
               content: newsPiece.content,
+              shares: newsPiece.shares,
               rating: newsPiece.rating,
             ),
           );
@@ -55,23 +55,23 @@ class _NewsRowState extends State < NewsRow > {
     );
   }
 
-  void updateNewsData() {
-    fetchChartDataX().then((newsData) {
+  void updateTweetData() {
+    fetchChartDataX().then((tweetData) {
       setState(() {
-        _news = newsData;
+        _tweets = tweetData;
       });
     });
   }
 
-  Future < List < NewsData > > fetchChartDataX() async {
-    final response = await http.get(BASE_IP_NEWS + widget._code);
+  Future < List < TweetData > > fetchChartDataX() async {
+    final response = await http.get(BASE_IP_TWEETS + widget._code);
     final decodedResponse = json.decode(response.body);
 
-    List < NewsData > ret = [];
+    List < TweetData > ret = [];
     for (var element in decodedResponse) {
-      ret.add(new NewsData(
-        element["title"] == null ? "" : element["title"].toString(),
-        element["description"] == null ? "" : element["description"].toString(),
+      ret.add(new TweetData(
+        element["text"] == null ? "" : element["text"].toString(),
+        element["shares"] == null ? "" : element["shares"].toString(),
         element["Score"] == null ? "" : element["Score"].toStringAsFixed(3),
       ));
     }

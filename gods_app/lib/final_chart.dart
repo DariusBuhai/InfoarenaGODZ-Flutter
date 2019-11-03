@@ -5,24 +5,25 @@ import 'dart:convert';
 import 'constants.dart';
 import 'package:intl/intl.dart';
 
-class StockData {
-  StockData(this.date, this.price);
-  final String date;
+class FinalData {
+  FinalData(this.rating, this.price);
+  final double rating;
   final double price;
 }
 
-class StockChart extends StatefulWidget {
-  StockChart(String code, {Key key}): _code = code, super(key: key);
+class FinalChart extends StatefulWidget {
+  FinalChart(String name, String code, {Key key}): _name = name, _code = code, super(key: key);
 
+  final String _name;
   final String _code;
 
   @override
-  _StockChartState createState() => _StockChartState();
+  _FinalChartState createState() => _FinalChartState();
 }
 
-class _StockChartState extends State < StockChart > {
+class _FinalChartState extends State < FinalChart > {
 
-  List < StockData > _data = [];
+  List < FinalData > _data = [];
 
   @override
   initState() {
@@ -34,7 +35,7 @@ class _StockChartState extends State < StockChart > {
   Widget build(BuildContext context) {
     return SfCartesianChart(
       primaryXAxis: CategoryAxis(),
-      title: ChartTitle(text: 'One month sales analysis'),
+      title: ChartTitle(text: 'Half yearly sales analysis'),
       // Enable legend
       legend: Legend(isVisible: true),
       // Enable tooltip
@@ -43,10 +44,10 @@ class _StockChartState extends State < StockChart > {
         numberFormat: NumberFormat.simpleCurrency()
       ),
       series: < ChartSeries >[
-        LineSeries < StockData, String >(
+        LineSeries < FinalData, double >(
           dataSource: _data,
-          xValueMapper: (StockData stock, _) => stock.date,
-          yValueMapper: (StockData stock, _) => stock.price,
+          xValueMapper: (FinalData element, _) => element.rating,
+          yValueMapper: (FinalData element, _) => element.price,
         )
       ],
     );
@@ -60,16 +61,16 @@ class _StockChartState extends State < StockChart > {
     });
   }
 
-  Future < List < StockData > > fetchChartDataX() async {
-    final response = await http.get(BASE_IP_STOCKS + widget._code);
+  Future < List < FinalData > > fetchChartDataX() async {
+    final response = await http.get(BASE_IP_FINAL_DATA + widget._name + "/" + widget._code);
     final decodedResponse = json.decode(response.body);
 
-    var xPoints = List < int >.from(decodedResponse["dates"]);
+    var xPoints = List < double >.from(decodedResponse["rates"]);
     var yPoints = List < double >.from(decodedResponse["prices"]);
 
-    List < StockData > ret = [];
+    List < FinalData > ret = [];
     for (int i = 0; i < xPoints.length; ++ i) {
-      ret.add(StockData(xPoints[i].toString() + " Oct.", yPoints[i].toDouble()));
+      ret.add(FinalData(xPoints[i].toDouble(), yPoints[i].toDouble()));
     }
 
     return ret;
