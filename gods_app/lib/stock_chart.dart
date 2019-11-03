@@ -11,7 +11,7 @@ class StockData {
 }
 
 class StockChart extends StatefulWidget {
-  StockChart(String this._code, {Key key}): super(key: key);
+  StockChart(String code, {Key key}): _code = code, super(key: key);
 
   final String _code;
 
@@ -52,7 +52,7 @@ class _StockChartState extends State < StockChart > {
   }
 
   Future < List < StockData > > fetchChartDataX() async {
-    final response = await http.get(BASE_IP + "/stocks/" + widget._code);
+    final response = await http.get(BASE_IP_STOCKS + widget._code);
     final decodedResponse = json.decode(response.body);
 
     var xPoints = List < int >.from(decodedResponse["dates"]);

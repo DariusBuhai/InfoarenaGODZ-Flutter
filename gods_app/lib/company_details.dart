@@ -37,7 +37,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               ),
             ],
           ),
-          NewsRow(),
+          NewsRow(widget._companyName),
         ],
       ),
     );

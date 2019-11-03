@@ -4,13 +4,13 @@ import 'const.dart';
 class SlideItem extends StatefulWidget {
 
   final String title;
-  final String address;
+  final String content;
   final String rating;
 
   SlideItem({
     Key key,
     @required this.title,
-    @required this.address,
+    @required this.content,
     @required this.rating,
   })
       : super(key: key);
@@ -117,7 +117,7 @@ class _SlideItemState extends State<SlideItem> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    "${widget.address}",
+                    "${widget.content}",
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w300,
