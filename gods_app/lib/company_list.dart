@@ -3,8 +3,15 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'constants.dart';
-
 import 'company_details.dart';
+
+class Company {
+  Company(this._name, this._code, this._avgStock, this._lastStock);
+  final String _name;
+  final String _code;
+  final String _avgStock;
+  final String _lastStock;
+}
 
 class CompanyList extends StatefulWidget {
   CompanyList({Key key}): super(key: key);
@@ -15,8 +22,7 @@ class CompanyList extends StatefulWidget {
 
 class _CompanyListState extends State < CompanyList > {
 
-  List < String > _companyNameList = [];
-  List < String > _companyCodeList = [];
+  List < Company > _companies = [];
 
   @override 
   initState() {
@@ -28,30 +34,65 @@ class _CompanyListState extends State < CompanyList > {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        itemCount: _companyNameList.length,
+        itemCount: _companies.length * 2,
         itemBuilder: (BuildContext context, int index) {
 
-          String currentName = _companyNameList[index];
-          String currentCode = _companyCodeList[index];
+          if ((index & 1) == 1) return Divider(
+            height: 5.0,
+          );
 
-          return Container(
-            margin: EdgeInsets.all(5),
-            child: Card(
-              child: ListTile(
-                title: Text(currentName),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return CompanyDetails(currentName, currentCode);
-                      }
+          int divIndex = (index / 2).floor();
+          var currentComp = _companies[divIndex];
+          double progress = double.parse(_companies[divIndex]._lastStock) - 
+              double.parse(_companies[divIndex]._avgStock);
+
+          return ListTile(
+            title: Container(
+              margin: EdgeInsets.all(5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: < Widget > [
+                  Row(
+                    children: < Widget > [
+                      Icon(
+                        (progress >= 0 ? Icons.arrow_upward : Icons.arrow_downward),
+                        color: (progress >= 0 ? Colors.green : Colors.red),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          currentComp._name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      "\$${currentComp._lastStock}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18.0,
+                      ),
                     ),
-                  );
-                },
+                  ),
+                ],
               ),
-              elevation: 10,
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return CompanyDetails(currentComp._name, currentComp._code);
+                  }
+                ),
+              );
+            },
           );
         }
       ),
@@ -60,27 +101,25 @@ class _CompanyListState extends State < CompanyList > {
   }
 
   void _updateCompanyList() {
-
-    fetchCompanyData("name").then((data) {
+    fetchCompanyData().then((companies) {
       setState(() {
-        _companyNameList = data; 
-      });
-    });
-
-    fetchCompanyData("code").then((data) {
-      setState(() {
-        _companyCodeList = data; 
+        _companies = companies; 
       });
     });
   }
 
-  Future < List < String > > fetchCompanyData(String what) async {
+  Future < List < Company > > fetchCompanyData() async {
     final response = await http.get(BASE_IP_COMPANIES);
     final decodedResponse = json.decode(response.body);
 
-    List < String > ret = [];
-    for (var x in decodedResponse) {
-      ret.add(x[what]);
+    List < Company > ret = [];
+    for (var element in decodedResponse) {
+      ret.add(Company(
+        element["name"].toString(),
+        element["code"].toString(),
+        element["medium_stock"].toString(),
+        element["last_stock"].toString(),
+      ));
     }
 
     return ret;
