@@ -75,7 +75,7 @@ class _CompanyListState extends State < CompanyList > {
   }
 
   Future < List < String > > fetchCompanyData(String what) async {
-    final response = await http.get(BASE_IP + "/companies/");
+    final response = await http.get(BASE_IP_COMPANIES);
     final decodedResponse = json.decode(response.body);
 
     List < String > ret = [];

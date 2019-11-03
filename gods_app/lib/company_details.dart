@@ -47,6 +47,7 @@ class _CompanyDetailsState extends State < CompanyDetails > {
               ),
             ],
           ),
+<<<<<<< HEAD
           SizedBox(height: 20.0),
 
           Row(
@@ -64,6 +65,9 @@ class _CompanyDetailsState extends State < CompanyDetails > {
 
           SizedBox(height: 10.0),
           NewsRow(),
+=======
+          NewsRow(widget._companyName),
+>>>>>>> 7ed924c6bc297524f72feeeda8b1e06af753cd2c
         ],
       ),
     );

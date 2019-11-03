@@ -1,52 +1,46 @@
 import 'package:flutter/material.dart';
 import 'const.dart';
 
-class SlideItem extends StatefulWidget {
+class NewsItem extends StatefulWidget {
 
-  final String img;
   final String title;
-  final String address;
+  final String content;
   final String rating;
 
-  SlideItem({
+  NewsItem({
     Key key,
-    @required this.img,
     @required this.title,
-    @required this.address,
+    @required this.content,
     @required this.rating,
   })
       : super(key: key);
 
   @override
-  _SlideItemState createState() => _SlideItemState();
+  _NewsItemState createState() => _NewsItemState();
 }
 
-class _SlideItemState extends State<SlideItem> {
+class _NewsItemState extends State<NewsItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+      padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
       child: Container(
-        height: MediaQuery.of(context).size.height / 2.9,
+        height: MediaQuery.of(context).size.height / 7.0,
         width: MediaQuery.of(context).size.width / 1.2,
         child: Card(
           shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(10.0)),
           elevation: 3.0,
-          child: Column(
+          child: ListView(
             children: <Widget>[
               Stack(
                 children: <Widget>[
                   Container(
-                    height: MediaQuery.of(context).size.height/3.7,
+                    height: MediaQuery.of(context).size.height / 20.0,
                     width: MediaQuery.of(context).size.width,
                     child: ClipRRect(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
-                      ),
-                      child: Image.asset(
-                        "${widget.img}",
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -77,27 +71,6 @@ class _SlideItemState extends State<SlideItem> {
                       ),
                     ),
                   ),
-
-                  Positioned(
-                    top: 6.0,
-                    left: 6.0,
-                    child: Card(
-                      shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(3.0)),
-                      child: Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child:Text(
-                          " OPEN ",
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-
                 ],
               ),
 
@@ -123,7 +96,7 @@ class _SlideItemState extends State<SlideItem> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    "${widget.address}",
+                    "${widget.content}",
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w300,
@@ -131,9 +104,6 @@ class _SlideItemState extends State<SlideItem> {
                   ),
                 ),
               ),
-
-              SizedBox(height: 10.0),
-
             ],
           ),
         ),
