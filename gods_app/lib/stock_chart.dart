@@ -32,22 +32,25 @@ class _StockChartState extends State < StockChart > {
 
   @override
   Widget build(BuildContext context) {
-    return SfCartesianChart(
-      primaryXAxis: CategoryAxis(),
-      title: ChartTitle(text: 'One month stock analysis'),
-      // Enable tooltip
-      tooltipBehavior: TooltipBehavior(enable: true),
-      primaryYAxis: NumericAxis(
-        numberFormat: NumberFormat.simpleCurrency()
-      ),
-      series: < ChartSeries >[
-        LineSeries < StockData, String >(
-          dataSource: _data,
-          xValueMapper: (StockData stock, _) => stock.date,
-          yValueMapper: (StockData stock, _) => stock.price,
-        )
-      ],
-    );
+    if(_data.length!=0){
+      return SfCartesianChart(
+        primaryXAxis: CategoryAxis(),
+        title: ChartTitle(text: 'One month stock analysis'),
+        tooltipBehavior: TooltipBehavior(enable: true),
+        primaryYAxis: NumericAxis(
+            numberFormat: NumberFormat.simpleCurrency()
+        ),
+        series: < ChartSeries >[
+          LineSeries < StockData, String >(
+            dataSource: _data,
+            xValueMapper: (StockData stock, _) => stock.date,
+            yValueMapper: (StockData stock, _) => stock.price,
+            dataLabelSettings: DataLabelSettings(isVisible: true)
+          )
+        ],
+      );
+    }
+    return Container();
   }
 
   void updateChartData() {
