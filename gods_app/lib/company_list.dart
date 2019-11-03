@@ -73,10 +73,11 @@ class _CompanyListState extends State < CompanyList > {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      "\$${currentComp._lastStock}",
+                      "\$ ${currentComp._lastStock}",
                       style: TextStyle(
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         fontSize: 18.0,
+                        color: Colors.black87
                       ),
                     ),
                   ),

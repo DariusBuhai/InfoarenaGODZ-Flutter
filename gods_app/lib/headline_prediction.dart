@@ -23,7 +23,7 @@ class _HeadlinePredictionState extends State < HeadlinePrediction > {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(30.0),
+      padding: EdgeInsets.all(20.0),
       child: Card(
         elevation: 2.0,
         color: Colors.white,
