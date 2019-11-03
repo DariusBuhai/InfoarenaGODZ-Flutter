@@ -3,6 +3,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'constants.dart';
+import 'package:intl/intl.dart';
 
 class StockData {
   StockData(this.date, this.price);
@@ -33,6 +34,9 @@ class _StockChartState extends State < StockChart > {
   Widget build(BuildContext context) {
     return SfCartesianChart(
       primaryXAxis: CategoryAxis(),
+      primaryYAxis: NumericAxis(
+        numberFormat: NumberFormat.simpleCurrency()
+      ),
       series: < ChartSeries >[
         LineSeries < StockData, String >(
           dataSource: _data,
@@ -60,7 +64,7 @@ class _StockChartState extends State < StockChart > {
 
     List < StockData > ret = [];
     for (int i = 0; i < xPoints.length; ++ i) {
-      ret.add(StockData(xPoints[i].toString() + " Oct.", yPoints[i]));
+      ret.add(StockData(xPoints[i].toString() + " Oct.", yPoints[i].toDouble()));
     }
 
     return ret;
