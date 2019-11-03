@@ -34,17 +34,14 @@ class _StockChartState extends State < StockChart > {
   Widget build(BuildContext context) {
     return SfCartesianChart(
       primaryXAxis: CategoryAxis(),
-<<<<<<< HEAD
       title: ChartTitle(text: 'Half yearly sales analysis'),
       // Enable legend
       legend: Legend(isVisible: true),
       // Enable tooltip
       tooltipBehavior: TooltipBehavior(enable: true),
-=======
       primaryYAxis: NumericAxis(
         numberFormat: NumberFormat.simpleCurrency()
       ),
->>>>>>> 7ed924c6bc297524f72feeeda8b1e06af753cd2c
       series: < ChartSeries >[
         LineSeries < StockData, String >(
           dataSource: _data,
