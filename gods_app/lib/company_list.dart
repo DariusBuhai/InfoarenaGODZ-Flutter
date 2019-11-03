@@ -43,8 +43,8 @@ class _CompanyListState extends State < CompanyList > {
 
           int divIndex = (index / 2).floor();
           var currentComp = _companies[divIndex];
-          double progress = double.parse(_companies[divIndex]._avgStock) - 
-              double.parse(_companies[divIndex]._lastStock);
+          double progress = double.parse(_companies[divIndex]._lastStock) - 
+              double.parse(_companies[divIndex]._avgStock);
 
           return ListTile(
             title: Container(
