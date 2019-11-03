@@ -47,7 +47,8 @@ class _FinalChartState extends State < FinalChart > {
             dataSource: _data,
             xValueMapper: (FinalData element, _) => element.rating,
             yValueMapper: (FinalData element, _) => element.price,
-            dataLabelSettings: DataLabelSettings(isVisible: true)
+            color: Colors.red,
+            dataLabelSettings: DataLabelSettings(isVisible: true),
           )
         ],
       );
@@ -56,11 +57,13 @@ class _FinalChartState extends State < FinalChart > {
   }
 
   void updateChartData() {
-    fetchChartDataX().then((chartData) {
-      setState(() {
-        _data = chartData;
+    if(_data.length==0) {
+      fetchChartDataX().then((chartData) {
+        setState(() {
+          _data = chartData;
+        });
       });
-    });
+    }
   }
 
   Future < List < FinalData > > fetchChartDataX() async {

@@ -5,10 +5,12 @@ import 'dart:convert';
 import 'constants.dart';
 
 class TweetData {
-  TweetData(this.content, this.shares, this.rating);
+  TweetData(this.content, this.shares, this.rating, this.likes, this.stoc_price);
   final String content;
   final String shares;
   final String rating;
+  final String stoc_price;
+  final String likes;
 }
 
 class TweetRow extends StatefulWidget {
@@ -48,6 +50,8 @@ class _TweetRowState extends State < TweetRow > {
               content: newsPiece.content,
               shares: newsPiece.shares,
               rating: newsPiece.rating,
+              stoc_price: newsPiece.stoc_price,
+              likes: newsPiece.likes,
             ),
           );
         },
@@ -73,6 +77,8 @@ class _TweetRowState extends State < TweetRow > {
         element["text"] == null ? "" : element["text"].toString(),
         element["shares"] == null ? "" : element["shares"].toString(),
         element["Score"] == null ? "" : element["Score"].toStringAsFixed(3),
+        element["likes"] == null ? "" : element["likes"].toStringAsFixed(0),
+        element["stoc_price"] == null ? "" : element["stoc_price"].toString(),
       ));
     }
 

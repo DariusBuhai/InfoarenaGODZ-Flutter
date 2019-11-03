@@ -54,11 +54,13 @@ class _StockChartState extends State < StockChart > {
   }
 
   void updateChartData() {
-    fetchChartDataX().then((chartData) {
-      setState(() {
-        _data = chartData;
+    if(_data.length==0){
+      fetchChartDataX().then((chartData) {
+        setState(() {
+          _data = chartData;
+        });
       });
-    });
+    }
   }
 
   Future < List < StockData > > fetchChartDataX() async {

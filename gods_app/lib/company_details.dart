@@ -17,6 +17,7 @@ class CompanyDetails extends StatefulWidget {
 
 class _CompanyDetailsState extends State < CompanyDetails > {
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,20 +77,6 @@ class _CompanyDetailsState extends State < CompanyDetails > {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "     Relevant news",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10.0),
-          NewsRow(widget._companyName),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
                 "     Relevant Tweets",
                 style: TextStyle(
                   fontSize: 30,
@@ -100,6 +87,32 @@ class _CompanyDetailsState extends State < CompanyDetails > {
           ),
           TweetRow(widget._companyCode),
           SizedBox(height: 10.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "     Relevant news",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+          NewsRow(widget._companyName),
+          SizedBox(height: 10.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "     Predict Twitter headline impact",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
           HeadlinePrediction(widget._companyName, widget._companyCode),
         ],
       ),

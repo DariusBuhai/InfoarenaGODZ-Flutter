@@ -23,9 +23,10 @@ class _HeadlinePredictionState extends State < HeadlinePrediction > {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(30.0),
       child: Card(
-        elevation: 3.0,
+        elevation: 2.0,
+        color: Colors.white,
         child: Column(
           children: < Widget > [
             Container(
@@ -35,7 +36,7 @@ class _HeadlinePredictionState extends State < HeadlinePrediction > {
                   Container(
                     padding: EdgeInsets.all(10.0),
                     child: Text(
-                      "Prediction:",
+                      "Stock impact:",
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w800,
@@ -49,7 +50,7 @@ class _HeadlinePredictionState extends State < HeadlinePrediction > {
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w800,
-                        color: (_prediction[0] == '-' ? Colors.red : Colors.green),
+                        color: (_prediction[0] == '-' ? Colors.red : Colors.lightGreen),
                       ),
                     ),
                   ),

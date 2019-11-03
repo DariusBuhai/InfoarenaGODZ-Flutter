@@ -5,12 +5,17 @@ class Tweet extends StatefulWidget {
   final String content;
   final String shares;
   final String rating;
+  final String stoc_price;
+  final String likes;
+
 
   Tweet({
     Key key,
     @required this.content,
     @required this.shares,
     @required this.rating,
+    @required this.stoc_price,
+    @required this.likes,
   })
       : super(key: key);
 
@@ -68,6 +73,28 @@ class _TweetState extends State<Tweet> {
 
                   Positioned(
                     top: 6.0,
+                    right: 100.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(4.0)),
+                      child: Padding(
+                        padding: EdgeInsets.all(2.0),
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                              "\$${widget.stoc_price} ",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.green,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  Positioned(
+                    top: 6.0,
                     left: 6.0,
                     child: Card(
                       shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(4.0)),
@@ -90,8 +117,35 @@ class _TweetState extends State<Tweet> {
                       ),
                     ),
                   ),
+
+                  Positioned(
+                    top: 6.0,
+                    left: 60.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(4.0)),
+                      child: Padding(
+                        padding: EdgeInsets.all(2.0),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.thumb_up,
+                              size: 15.0,
+                            ),
+                            Text(
+                              " ${widget.likes} ",
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
                 ],
               ),
+
 
               SizedBox(height: 10.0),
 
@@ -102,7 +156,7 @@ class _TweetState extends State<Tweet> {
                   child: Text(
                     "${widget.content}",
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 20,
                       fontWeight: FontWeight.w300,
                     ),
                   ),
