@@ -34,9 +34,7 @@ class _StockChartState extends State < StockChart > {
   Widget build(BuildContext context) {
     return SfCartesianChart(
       primaryXAxis: CategoryAxis(),
-      title: ChartTitle(text: 'Half yearly sales analysis'),
-      // Enable legend
-      legend: Legend(isVisible: true),
+      title: ChartTitle(text: 'One month stock analysis'),
       // Enable tooltip
       tooltipBehavior: TooltipBehavior(enable: true),
       primaryYAxis: NumericAxis(
@@ -47,7 +45,6 @@ class _StockChartState extends State < StockChart > {
           dataSource: _data,
           xValueMapper: (StockData stock, _) => stock.date,
           yValueMapper: (StockData stock, _) => stock.price,
-          dataLabelSettings: DataLabelSettings(isVisible: true)
         )
       ],
     );
