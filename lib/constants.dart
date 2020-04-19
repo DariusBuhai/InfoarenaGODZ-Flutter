@@ -1,5 +1,5 @@
-const String IP = "0.0.0.0";
-const String PORT = ":80";
+const String IP = "192.168.2.109";
+const String PORT = ":8000";
 const String HTTP = "http://";
 const String BASE_IP = HTTP+IP+PORT;
 const String BASE_IP_STOCKS = BASE_IP+"/stocks/";
